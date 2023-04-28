@@ -1,0 +1,27 @@
+import random
+
+class Member:
+    def __init__(self, name, age, gender, interests):
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.interests = interests
+    
+    def __str__(self):
+        return f"{self.name}, {self.age}, {self.gender}, {self.interests}"
+
+class Gym:
+    def __init__(self):
+        self.members = []
+    
+    def add_member(self, member):
+        self.members.append(member)
+    
+    def get_workout_partner(self, member):
+        candidates = [m for m in self.members if m != member and m.gender != member.gender and set(m.interests).intersection(set(member.interests))]
+        if candidates:
+            return random.choice(candidates)
+        else:
+            return None
+
+
